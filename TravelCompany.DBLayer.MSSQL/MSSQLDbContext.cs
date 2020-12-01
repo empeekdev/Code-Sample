@@ -6,17 +6,9 @@ namespace TravelCompany.DBLayer.MSSQL
 {
     public class MSSQLDbContext : BaseDBContext
     {
-        private readonly string _connectionString;
-        
-        public DbSet<TravelAgency> TravelAgencies { get; set; }
-
-        public MSSQLDbContext(string connectionString) : base()
+        public MSSQLDbContext(DbContextOptions option) : base(option)
         {
-            _connectionString = connectionString;
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(_connectionString);
+                     
         }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using TravelCompany.Core.Services;
 using TravelCompany.Core.Services.Implementations;
 using TravelCompany.DBLayer.MSSQL;
+using TravelCompany.DBLayer.PostgreSQL;
 
 namespace TravelCompany.WebApi
 {
@@ -24,20 +25,28 @@ namespace TravelCompany.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddLogging(x => x.AddConsole());
-            
-            //services.AddTransient<DbContext, PostgreSQLDbContext>(provider =>
-            //{
-            //    return new PostgreSQLDbContext(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("PostgreSQL"));
+
+            //services.AddDbContext<DbContext, PostgreSQLDbContext>(options => {
+            //    options.UseNpgsql(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("PostgreSQL"));
             //});
 
-            services.AddTransient<DbContext, MSSQLDbContext>(provider =>
+            services.AddDbContext<DbContext, MSSQLDbContext>(options =>
             {
-                return new MSSQLDbContext(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("MSSQL"));
+                options.UseSqlServer(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("MSSQL"));
             });
 
             services.AddTransient<ITestService, TestService>();
 
             services.AddControllers();
+        }
+
+        private void InitializeDatabase(IApplicationBuilder app)
+        {
+            using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                //scope.ServiceProvider.GetRequiredService<DbContext>().Database.Migrate();
+                scope.ServiceProvider.GetRequiredService<DbContext>().Database.EnsureCreated();
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +56,8 @@ namespace TravelCompany.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            InitializeDatabase(app);
 
             app.UseRouting();
 

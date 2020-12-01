@@ -12,7 +12,7 @@ namespace TravelCompany.Core.Services.Implementations
         {            
             _uow = new UnitOfWork(dbContext);
 
-            var x =_uow.TravelAgencyRepository.GetAll();
+            //var x =_uow.TravelAgencyRepository.GetAll();
         }
 
     }
