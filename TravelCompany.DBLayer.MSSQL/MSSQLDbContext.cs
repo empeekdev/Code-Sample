@@ -1,16 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using TravelCompany.Model;
 
 namespace TravelCompany.DBLayer.MSSQL
 {
-    public class MSSQLDbContext : DbContext
+    public class MSSQLDbContext : BaseDBContext
     {
         private readonly string _connectionString;
-
-        public MSSQLDbContext()
-        {
-
-        }
+        
+        public DbSet<TravelAgency> TravelAgencies { get; set; }
 
         public MSSQLDbContext(string connectionString) : base()
         {

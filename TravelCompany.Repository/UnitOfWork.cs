@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TravelCompany.Model;
+using TravelCompany.Repository.Repositories;
 
 namespace TravelCompany.Repository
 {
@@ -9,9 +11,25 @@ namespace TravelCompany.Repository
     {
         private DbContext _dbContext;
 
+        private IRepository<TravelAgency> _travelAgencyRepository;
+
         public UnitOfWork(DbContext dbContext)
         {
             _dbContext = dbContext;
+            _dbContext.Database.OpenConnection();
+        }
+
+        public IRepository<TravelAgency> TravelAgencyRepository
+        {
+            get
+            {
+                return _travelAgencyRepository ?? (_travelAgencyRepository = GetRepositoryOfType<TravelAgency>());
+            }
+        }
+
+        public IRepository<T> GetRepositoryOfType<T>() where T : class
+        {
+            return new Repository<T>(_dbContext);
         }
 
         public void BeginTransaction() => _dbContext.Database.BeginTransaction();

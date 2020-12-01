@@ -11,6 +11,8 @@ namespace TravelCompany.Core.Services.Implementations
         public TestService(DbContext dbContext)
         {            
             _uow = new UnitOfWork(dbContext);
+
+            var x =_uow.TravelAgencyRepository.GetAll();
         }
 
     }

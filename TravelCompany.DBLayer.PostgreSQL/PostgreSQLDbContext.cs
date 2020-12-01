@@ -3,14 +3,9 @@ using System;
 
 namespace TravelCompany.DBLayer.PostgreSQL
 {
-    public class PostgreSQLDbContext : DbContext
+    public class PostgreSQLDbContext : BaseDBContext
     {
         private readonly string _connectionString;
-
-        public PostgreSQLDbContext()
-        {
-
-        }
 
         public PostgreSQLDbContext(string connectionString) : base()
         {
