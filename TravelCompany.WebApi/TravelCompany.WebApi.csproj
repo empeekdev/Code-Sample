@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TravelCompany.Core\TravelCompany.Core.csproj" />
+    <ProjectReference Include="..\TravelCompany.DBLayer.MSSQL\TravelCompany.DBLayer.MSSQL.csproj" />
+    <ProjectReference Include="..\TravelCompany.DBLayer.PostgreSQL\TravelCompany.DBLayer.PostgreSQL.csproj" />
+  </ItemGroup>
+
+
+</Project>
