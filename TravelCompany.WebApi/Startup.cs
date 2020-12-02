@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,7 @@ using TravelCompany.Core.Services;
 using TravelCompany.Core.Services.Implementations;
 using TravelCompany.DBLayer.MSSQL;
 using TravelCompany.DBLayer.PostgreSQL;
+using Newtonsoft.Json.Serialization;
 
 namespace TravelCompany.WebApi
 {
@@ -26,6 +28,25 @@ namespace TravelCompany.WebApi
         {
             services.AddLogging(x => x.AddConsole());
 
+            services.AddMvc(options =>
+            {
+                // Refer to this article for more details on how to properly set the caching for your needs
+                // https://docs.microsoft.com/en-us/aspnet/core/performance/caching/response
+                options.CacheProfiles.Add(
+                    "default",
+                    new CacheProfile
+                    {
+                        Duration = 600,
+                        Location = ResponseCacheLocation.None
+                    });
+            });
+
+            services.AddResponseCaching(options =>
+            {
+                options.MaximumBodySize = 2048;
+                options.UseCaseSensitivePaths = false;
+            });
+
             //services.AddDbContext<DbContext, PostgreSQLDbContext>(options => {
             //    options.UseNpgsql(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("PostgreSQL"));
             //});
@@ -35,7 +56,7 @@ namespace TravelCompany.WebApi
                 options.UseSqlServer(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("MSSQL"));
             });
 
-            services.AddTransient<ITestService, TestService>();
+            services.AddTransient<ITravelAgencyService, TestService>();
 
             services.AddControllers();
         }
