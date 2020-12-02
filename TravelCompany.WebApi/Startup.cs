@@ -11,6 +11,7 @@ using TravelCompany.Core.Services.Implementations;
 using TravelCompany.DBLayer.MSSQL;
 using TravelCompany.DBLayer.PostgreSQL;
 using Newtonsoft.Json.Serialization;
+using Microsoft.OpenApi.Models;
 
 namespace TravelCompany.WebApi
 {
@@ -47,6 +48,11 @@ namespace TravelCompany.WebApi
                 options.UseCaseSensitivePaths = false;
             });
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelCompany API", Version = "v1" });
+            });
+
             //services.AddDbContext<DbContext, PostgreSQLDbContext>(options => {
             //    options.UseNpgsql(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("PostgreSQL"));
             //});
@@ -56,7 +62,7 @@ namespace TravelCompany.WebApi
                 options.UseSqlServer(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("MSSQL"));
             });
 
-            services.AddTransient<ITravelAgencyService, TestService>();
+            services.AddTransient<ITravelAgencyService, TravelAgencyService >();
 
             services.AddControllers();
         }
@@ -79,6 +85,12 @@ namespace TravelCompany.WebApi
             }
 
             InitializeDatabase(app);
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TravelCompany API V1");
+            });
 
             app.UseRouting();
 

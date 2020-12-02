@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using TravelCompany.Core.Services;
 using TravelCompany.WebApi.DTOModels;
 
@@ -14,10 +12,10 @@ namespace TravelCompany.WebApi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [AllowAnonymous]
-    public class TravelCompanyController : BaseController
+    public class TravelAgencyController : BaseController
     {        
         private readonly ITravelAgencyService _testService;
-        public TravelCompanyController(ILogger<TravelCompanyController> logger, ITravelAgencyService testService): base(logger)
+        public TravelAgencyController(ILogger<TravelAgencyController> logger, ITravelAgencyService testService): base(logger)
         {            
             _testService = testService;
         }

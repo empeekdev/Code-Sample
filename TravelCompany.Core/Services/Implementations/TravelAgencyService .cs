@@ -9,21 +9,19 @@ using TravelCompany.Repository;
 
 namespace TravelCompany.Core.Services.Implementations
 {
-    public class TestService: ITravelAgencyService
+    public class TravelAgencyService : ITravelAgencyService
     {        
         private readonly IUnitOfWork _uow;
 
-        public TestService(DbContext dbContext)
+        public TravelAgencyService (DbContext dbContext)
         {            
-            _uow = new UnitOfWork(dbContext);
-
-            //var x =_uow.TravelAgencyRepository.GetAll();
+            _uow = new UnitOfWork(dbContext);            
         }
 
         public async Task<Result<IEnumerable<TravelAgency>>> GetAllTravelAgencies()
         {
             try
-            {
+            {                
                 var travelAgencies = await _uow.TravelAgencyRepository.GetAllAsync();
                 return Result.Success(travelAgencies);
             }
