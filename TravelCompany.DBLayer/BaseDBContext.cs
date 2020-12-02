@@ -9,6 +9,7 @@ namespace TravelCompany.DBLayer
     public class BaseDBContext: DbContext
     {
         public DbSet<TravelAgency> TravelAgencies { get; }
+        public DbSet<Agent> Agents { get; }        
 
         public BaseDBContext(DbContextOptions option) : base(option)
         {

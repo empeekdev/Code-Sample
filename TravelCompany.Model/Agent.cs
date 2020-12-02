@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TravelCompany.Model
 {
-    [Table("TravelAgency")]
-    public class TravelAgency
+    [Table("Agent")]
+    public class Agent
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
@@ -14,10 +13,13 @@ namespace TravelCompany.Model
         [Required]
         public Guid UUID { get; set; }
 
-        [MaxLength(200)]
+        [MaxLength(50)]
         [Required]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        [MaxLength(50)]
+        [Required]
+        public string LastName { get; set; }
 
-        public IEnumerable<Agent> Agents { get; set; }
+        public TravelAgency TravelAgency { get; set; }
     }
 }

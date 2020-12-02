@@ -16,12 +16,12 @@ namespace TravelCompany.Repository.Repositories
 		{
 			_db = db;
 		}
-		public T GetById(int id)
+		public T GetById(long id)
 		{
 			return _db.Set<T>().Find(id);
 		}
 
-		public async Task<T> GetByIdAsync(int id)
+		public async Task<T> GetByIdAsync(long id)
 		{
 			return await _db.Set<T>().FindAsync(id);
 		}

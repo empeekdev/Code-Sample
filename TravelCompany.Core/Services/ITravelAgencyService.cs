@@ -8,6 +8,7 @@ namespace TravelCompany.Core.Services
     public interface ITravelAgencyService
     {
         Task<Result<IEnumerable<TravelAgency>>> GetAllTravelAgencies();
-        Result<TravelAgency> AddAgency(TravelAgency travelAgency);
+        Result<TravelAgency> AddTravelAgency(TravelAgency travelAgency);
+        Result<Agent> AddAgent(long travelAgencyId,  Agent agent);
     }
 }

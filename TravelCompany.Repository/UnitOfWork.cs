@@ -12,6 +12,7 @@ namespace TravelCompany.Repository
         private DbContext _dbContext;
 
         private IRepository<TravelAgency> _travelAgencyRepository;
+        private IRepository<Agent> _agentRepository;
 
         public UnitOfWork(DbContext dbContext)
         {
@@ -24,6 +25,14 @@ namespace TravelCompany.Repository
             get
             {
                 return _travelAgencyRepository ?? (_travelAgencyRepository = GetRepositoryOfType<TravelAgency>());
+            }
+        }
+
+        public IRepository<Agent> AgentRepository
+        {
+            get
+            {
+                return _agentRepository ?? (_agentRepository = GetRepositoryOfType<Agent>());
             }
         }
 

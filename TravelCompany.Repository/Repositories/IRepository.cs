@@ -8,8 +8,8 @@ namespace TravelCompany.Repository.Repositories
 {
     public interface IRepository<T> where T : class
     {
-        Task<T> GetByIdAsync(int id);
-        T GetById(int id);
+        Task<T> GetByIdAsync(long id);
+        T GetById(long id);
         IEnumerable<T> GetAll();
         Task<IEnumerable<T>> GetAllAsync();
         IQueryable<T> Select();

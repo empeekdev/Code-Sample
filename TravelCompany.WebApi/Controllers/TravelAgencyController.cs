@@ -26,7 +26,7 @@ namespace TravelCompany.WebApi.Controllers
         /// <returns></returns>
         [HttpGet, ResponseCache(CacheProfileName = "default")]
         [ProducesResponseType(typeof(BaseResponse<IEnumerable<DTOTravelAgency>>), 200)]
-        [Route("list")]
+        [Route("")]
         public async Task<IActionResult> GetList()
         {
             var result = await _testService.GetAllTravelAgencies();
@@ -39,13 +39,26 @@ namespace TravelCompany.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(BaseResponse<DTOTravelAgency>), 200)]
         [ProducesResponseType(500)]
-        [Route("add")]
-        public IActionResult PostCreate([FromBody] DTOTravelAgencyCreate model)
+        [Route("")]
+        public IActionResult AddTravelAgency([FromBody] DTOTravelAgencyCreate model)
         {
-            var result = _testService.AddAgency(model.ToDataModel());
+            var result = _testService.AddTravelAgency(model.ToDataModel());
 
             return ProcessResult(result, 
                 a => Ok(new BaseResponse<DTOTravelAgency>(a.ToDTOModel()))
+            );
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(BaseResponse<DTOAgent>), 200)]
+        [ProducesResponseType(500)]
+        [Route("{travelAgencyId:long}/agents")]
+        public IActionResult AddAgent(long travelAgencyId, [FromBody] DTOAgentCreate model)
+        {
+            var result = _testService.AddAgent(travelAgencyId, model.ToDataModel());
+
+            return ProcessResult(result,
+                a => Ok(new BaseResponse<DTOAgent>(a.ToDTOModel()))
             );
         }
     }

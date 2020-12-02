@@ -36,7 +36,7 @@ namespace TravelCompany.Core.Services.Implementations
             }
         }
 
-        public Result<TravelAgency> AddAgency(TravelAgency travelAgency)
+        public Result<TravelAgency> AddTravelAgency(TravelAgency travelAgency)
         {
             try
             {
@@ -53,6 +53,30 @@ namespace TravelCompany.Core.Services.Implementations
             {
                 _logger.LogError(ex, ex.Message);
                 return Result.GeneralError<TravelAgency>(ex);
+            }
+        }
+
+        public Result<Agent> AddAgent(long travelAgencyId, Agent agent)
+        {
+            try
+            {
+                //var validationErrors = agent.Validate();
+                //if (validationErrors.Any())
+                //    return Result.ValidationError<TravelAgency>(validationErrors);
+
+                var travelAgency = _uow.TravelAgencyRepository.GetById(travelAgencyId);
+
+                agent.TravelAgency = travelAgency;
+
+                var item = _uow.AgentRepository.Add(agent);
+                _uow.SaveChanges();
+
+                return Result.Success(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return Result.GeneralError<Agent>(ex);
             }
         }
     }

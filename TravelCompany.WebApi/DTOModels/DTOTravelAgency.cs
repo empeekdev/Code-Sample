@@ -13,7 +13,7 @@ namespace TravelCompany.WebApi.DTOModels
     public class DTOTravelAgencyCreate
     {        
         public string Name { get; set; }
-        public Guid UUID { get; set; }
+        public Guid? UUID { get; set; }
     }
 
     public static class DTOTravelAgencyExtention
@@ -39,7 +39,7 @@ namespace TravelCompany.WebApi.DTOModels
             return new TravelAgency
             {                
                 Name = item.Name,
-                UUID = item.UUID
+                UUID = item.UUID ?? Guid.NewGuid()
             };
         }
     }
