@@ -46,6 +46,7 @@ namespace TravelCompany.Core.Services.Implementations
 
                 var item = _uow.TravelAgencyRepository.Add(travelAgency);
                 _uow.SaveChanges();
+
                 return Result.Success(item);
             }
             catch (Exception ex)
