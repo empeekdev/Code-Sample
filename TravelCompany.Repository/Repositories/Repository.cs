@@ -41,7 +41,7 @@ namespace TravelCompany.Repository.Repositories
 			return _db.Set<T>();
 		}
 
-		public T Save(T entity)
+		public T Add(T entity)
 		{
 			return _db.Set<T>().Add(entity).Entity;
 		}

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TravelCompany.Core.Enums;
+using TravelCompany.Core.Validation;
 
 namespace TravelCompany.Core.Models
 {

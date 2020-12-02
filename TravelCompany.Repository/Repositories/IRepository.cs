@@ -13,7 +13,7 @@ namespace TravelCompany.Repository.Repositories
         IEnumerable<T> GetAll();
         Task<IEnumerable<T>> GetAllAsync();
         IQueryable<T> Select();
-        T Save(T entity);
+        T Add(T entity);
         T Detach(T entity);
         T Delete(T entityToDelete);
         T Update(T entityToUpdate);

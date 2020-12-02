@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TravelCompany.Core.Models
+namespace TravelCompany.Core.Validation
 {
     public class ValidationError
     {

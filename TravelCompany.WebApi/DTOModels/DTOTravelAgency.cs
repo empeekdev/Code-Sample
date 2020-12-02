@@ -8,6 +8,11 @@ namespace TravelCompany.WebApi.DTOModels
         public string Name { get; set; }
     }
 
+    public class DTOTravelAgencyCreate
+    {        
+        public string Name { get; set; }
+    }
+
     public static class DTOTravelAgencyExtention
     {
         /// <summary> </summary>
@@ -23,7 +28,7 @@ namespace TravelCompany.WebApi.DTOModels
         }
 
         /// <summary> </summary>
-        public static TravelAgency ToDataModel(this DTOTravelAgency item)
+        public static TravelAgency ToDataModel(this DTOTravelAgencyCreate item)
         {
             if (item == null) return null;
 

@@ -20,6 +20,10 @@ namespace TravelCompany.WebApi.Controllers
             _testService = testService;
         }
 
+        /// <summary>
+        /// Returns a list of travel agencies
+        /// </summary>
+        /// <returns></returns>
         [HttpGet, ResponseCache(CacheProfileName = "default")]
         [ProducesResponseType(typeof(BaseResponse<IEnumerable<DTOTravelAgency>>), 200)]
         [Route("list")]
@@ -27,7 +31,22 @@ namespace TravelCompany.WebApi.Controllers
         {
             var result = await _testService.GetAllTravelAgencies();
 
-            return ProcessResult(result, a => Ok(new BaseResponse<IEnumerable<DTOTravelAgency>>(a.Select(x => x.ToDTOModel()))));
+            return ProcessResult(result, 
+                a => Ok(new BaseResponse<IEnumerable<DTOTravelAgency>>(a.Select(x => x.ToDTOModel())))
+            );
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(BaseResponse<DTOTravelAgency>), 200)]
+        [ProducesResponseType(500)]
+        [Route("add")]
+        public IActionResult PostCreate([FromBody] DTOTravelAgencyCreate model)
+        {
+            var result = _testService.AddAgency(model.ToDataModel());
+
+            return ProcessResult(result, 
+                a => Ok(new BaseResponse<DTOTravelAgency>(a.ToDTOModel()))
+            );
         }
     }
 }

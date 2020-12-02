@@ -38,6 +38,8 @@ namespace TravelCompany.Repository
 
         public void Rollback() => _dbContext.Database.RollbackTransaction();
 
+        public void SaveChanges() => _dbContext.SaveChanges();
+
 
         private volatile bool _disposed;
         public void Dispose()
