@@ -53,14 +53,15 @@ namespace TravelCompany.WebApi
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelCompany API", Version = "v1" });                
             });
 
-            //services.AddDbContext<DbContext, PostgreSQLDbContext>(options => {
-            //    options.UseNpgsql(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("PostgreSQL"));
-            //});
-
-            services.AddDbContext<DbContext, MSSQLDbContext>(options =>
+            services.AddDbContext<DbContext, PostgreSQLDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("MSSQL"));
+                options.UseNpgsql(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("PostgreSQL"));
             });
+
+            //services.AddDbContext<DbContext, MSSQLDbContext>(options =>
+            //{
+            //    options.UseSqlServer(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("MSSQL"));
+            //});
 
             services.AddTransient<ITravelAgencyService, TravelAgencyService >();
 
