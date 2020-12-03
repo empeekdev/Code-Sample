@@ -53,13 +53,26 @@ namespace TravelCompany.WebApi.Controllers
             );
         }
 
+        [HttpGet]
+        [ProducesResponseType(typeof(BaseResponse<IEnumerable<DTOAgent>>), 200)]
+        [ProducesResponseType(500)]
+        [Route("{travelAgencyUUID:guid}/agents")]
+        public async Task<IActionResult> GetAgentsByTravelAgencyUUID(Guid travelAgencyUUID)
+        {
+            var result = await _testService.GetAgents(travelAgencyUUID);
+
+            return ProcessResult(result,
+                a => Ok(new BaseResponse<IEnumerable<DTOAgent>>(a.Select(x => x.ToDTOModel())))
+            );
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(BaseResponse<DTOAgent>), 200)]
         [ProducesResponseType(500)]
-        [Route("{travelAgencyId:long}/agents")]
-        public IActionResult AddAgentByTravelCompanyId(long travelAgencyId, [FromBody] DTOAgentCreate model)
+        [Route("{travelAgencyUUID:guid}/agents")]
+        public IActionResult AddAgentByTravelAgencyUUID(Guid travelAgencyUUID, [FromBody] DTOAgentCreate model)
         {
-            var result = _testService.AddAgent(travelAgencyId, model.ToDataModel());
+            var result = _testService.AddAgent(travelAgencyUUID, model.ToDataModel());
 
             return ProcessResult(result,
                 a => Ok(new BaseResponse<DTOAgent>(a.ToDTOModel()))

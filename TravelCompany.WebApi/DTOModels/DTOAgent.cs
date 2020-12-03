@@ -4,10 +4,8 @@ using TravelCompany.Model;
 namespace TravelCompany.WebApi.DTOModels
 {
     public class DTOAgent
-    {
-        public long Id { get; set; }
-        public Guid UUID { get; set; }
-        public long TravelAgentcyId { get; set; }        
+    {        
+        public Guid UUID { get; set; }        
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }
@@ -27,12 +25,10 @@ namespace TravelCompany.WebApi.DTOModels
             if (item == null) return null;
 
             return new DTOAgent
-            {
-                Id = item.Id,
+            {                
                 UUID = item.UUID,
                 FirstName = item.FirstName,
-                LastName = item.LastName,
-                TravelAgentcyId = item.TravelAgency.Id
+                LastName = item.LastName                
             };
         }
 

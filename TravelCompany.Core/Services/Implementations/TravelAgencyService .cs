@@ -63,11 +63,25 @@ namespace TravelCompany.Core.Services.Implementations
             }
         }
 
-        public Result<Agent> AddAgent(long travelAgencyId, Agent agent)
+        public async Task<Result<IEnumerable<Agent>>> GetAgents(Guid travelAgencyUUID)
         {
             try
             {
-                var travelAgency = _uow.TravelAgencyRepository.GetById(travelAgencyId);
+                var agents = await _uow.AgentRepository.Select().Where(x => x.TravelAgency.UUID == travelAgencyUUID).ToListAsync();
+                return Result.Success(agents.AsEnumerable());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return Result.GeneralError<IEnumerable<Agent>>(ex);
+            }
+        }       
+
+        public Result<Agent> AddAgent(Guid uuid, Agent agent)
+        {
+            try
+            {
+                var travelAgency = _uow.TravelAgencyRepository.GetByUUID(uuid);
                 agent.TravelAgency = travelAgency;
 
                 var validationErrors = agent.Validate();

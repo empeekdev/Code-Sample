@@ -4,16 +4,15 @@ using TravelCompany.Model;
 namespace TravelCompany.WebApi.DTOModels
 {
     public class DTOTravelAgency
-    {
-        public long Id { get; set; }
+    {        
         public Guid UUID { get; set; } 
         public string Name { get; set; }
     }
 
     public class DTOTravelAgencyCreate
-    {        
-        public string Name { get; set; }
+    {
         public Guid? UUID { get; set; }
+        public string Name { get; set; }        
     }
 
     public static class DTOTravelAgencyExtention
@@ -24,8 +23,7 @@ namespace TravelCompany.WebApi.DTOModels
             if (item == null) return null;
 
             return new DTOTravelAgency
-            {
-                Id = item.Id,
+            {                
                 Name = item.Name,
                 UUID = item.UUID
             };
