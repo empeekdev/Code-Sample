@@ -92,6 +92,7 @@ namespace TravelCompany.Core.Services.Implementations
             {                
                 var serializer = new XmlSerializer(typeof(TravelAgency));
                 var travelAgencies = new List<TravelAgency>();
+                var agents = new List<Agent>();
 
                 using (var stream = file.OpenReadStream())
                 using (var archive = new ZipArchive(stream))
@@ -103,19 +104,24 @@ namespace TravelCompany.Core.Services.Implementations
                         var validationErrors = travelAgency.Validate();
                         if (validationErrors.Any())
                             return Result.ValidationError<bool>(validationErrors);
-
-                        travelAgencies.Add(travelAgency as TravelAgency);
+                        
+                        travelAgencies.Add(travelAgency);
                     }
                 }
 
                 _uow.BeginTransaction();
-
+                
                 foreach (var travelAgency in travelAgencies)
                 {
-                    _uow.TravelAgencyRepository.Delete(travelAgency);
-                    _uow.TravelAgencyRepository.Add(travelAgency);
+                    var dbTravelAgency = _uow.TravelAgencyRepository.GetByUUID(travelAgency.UUID);
+                    if (dbTravelAgency != null)
+                    {                        
+                        _uow.TravelAgencyRepository.Delete(dbTravelAgency);
+                        _uow.SaveChanges();
+                    }
                 }
 
+                _uow.TravelAgencyRepository.Add(travelAgencies);
                 _uow.SaveChanges();
 
                 _uow.Commit();

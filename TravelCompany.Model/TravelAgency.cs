@@ -16,6 +16,7 @@ namespace TravelCompany.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
+        [Key]
         [Required]
         public Guid UUID { get; set; }
 

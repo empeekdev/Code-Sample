@@ -21,9 +21,19 @@ namespace TravelCompany.Repository.Repositories
 			return _db.Set<T>().Find(id);
 		}
 
+		public T GetByUUID(Guid uuid)
+		{
+			return _db.Set<T>().Find(uuid);
+		}
+
 		public async Task<T> GetByIdAsync(long id)
 		{
 			return await _db.Set<T>().FindAsync(id);
+		}
+
+		public async Task<T> GetByUUIDAsync(Guid uuid)
+		{
+			return await _db.Set<T>().FindAsync(uuid);
 		}
 
 		public IEnumerable<T> GetAll()
@@ -46,9 +56,23 @@ namespace TravelCompany.Repository.Repositories
 			return _db.Set<T>().Add(entity).Entity;
 		}
 
+		public void Add(IEnumerable<T> entities)
+		{
+			foreach (var entity in entities)
+			{
+				Add(entity);
+			}
+		}
+
 		public T Detach(T entity)
 		{
 			_db.Entry(entity).State = EntityState.Detached;
+			return entity;
+		}
+
+		public T SetModified(T entity)
+        {
+			_db.Entry(entity).State = EntityState.Modified;
 			return entity;
 		}
 
