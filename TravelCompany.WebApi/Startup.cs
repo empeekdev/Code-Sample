@@ -70,9 +70,8 @@ namespace TravelCompany.WebApi
         private void InitializeDatabase(IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                //scope.ServiceProvider.GetRequiredService<DbContext>().Database.Migrate();
-                scope.ServiceProvider.GetRequiredService<DbContext>().Database.EnsureCreated();
+            {                                
+                scope.ServiceProvider.GetRequiredService<DbContext>().Database.Migrate();
             }
         }
 

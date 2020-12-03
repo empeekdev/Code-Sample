@@ -40,6 +40,11 @@ namespace TravelCompany.WebApi.Controllers
             );
         }
 
+        /// <summary>
+        /// Add a new travel agency
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(BaseResponse<DTOTravelAgency>), 200)]
         [ProducesResponseType(500)]
@@ -53,6 +58,11 @@ namespace TravelCompany.WebApi.Controllers
             );
         }
 
+        /// <summary>
+        /// Returns a list of agents by the travel agency UUID
+        /// </summary>
+        /// <param name="travelAgencyUUID"></param>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(BaseResponse<IEnumerable<DTOAgent>>), 200)]
         [ProducesResponseType(500)]
@@ -66,6 +76,13 @@ namespace TravelCompany.WebApi.Controllers
             );
         }
 
+
+        /// <summary>
+        /// Add a new agent to a travel agency
+        /// </summary>
+        /// <param name="travelAgencyUUID"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(BaseResponse<DTOAgent>), 200)]
         [ProducesResponseType(500)]
@@ -79,6 +96,12 @@ namespace TravelCompany.WebApi.Controllers
             );
         }
 
+        /// <summary>
+        /// Bulk import agencies and their agents. Data should be accepted as a .zip archive, which contains several xml files. 
+        /// Each file holds data about agents and some agency metadata.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(bool), 200)]
         [ProducesResponseType(500)]
