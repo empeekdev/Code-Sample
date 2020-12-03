@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using TravelCompany.Core.Services;
@@ -53,13 +57,27 @@ namespace TravelCompany.WebApi.Controllers
         [ProducesResponseType(typeof(BaseResponse<DTOAgent>), 200)]
         [ProducesResponseType(500)]
         [Route("{travelAgencyId:long}/agents")]
-        public IActionResult AddAgent(long travelAgencyId, [FromBody] DTOAgentCreate model)
+        public IActionResult AddAgentByTravelCompanyId(long travelAgencyId, [FromBody] DTOAgentCreate model)
         {
             var result = _testService.AddAgent(travelAgencyId, model.ToDataModel());
 
             return ProcessResult(result,
                 a => Ok(new BaseResponse<DTOAgent>(a.ToDTOModel()))
             );
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(bool), 200)]
+        [ProducesResponseType(500)]
+        [Route("upload/zip")]
+        public IActionResult UploadTravelAgencies(IFormFile file)
+        {            
+
+            var result = _testService.BulkUploadZip(file);
+
+            return ProcessResult(result,
+                a => Ok(new BaseResponse<bool>(a))
+            );            
         }
     }
 }

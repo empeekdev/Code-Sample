@@ -48,9 +48,9 @@ namespace TravelCompany.WebApi
                 options.UseCaseSensitivePaths = false;
             });
 
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelCompany API", Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelCompany API", Version = "v1" });                
             });
 
             //services.AddDbContext<DbContext, PostgreSQLDbContext>(options => {
@@ -87,9 +87,9 @@ namespace TravelCompany.WebApi
             InitializeDatabase(app);
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(options =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TravelCompany API V1");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "TravelCompany API V1");
             });
 
             app.UseRouting();

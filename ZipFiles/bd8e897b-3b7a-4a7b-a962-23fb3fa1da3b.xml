@@ -1,0 +1,16 @@
+<TravelAgency>
+  <UUID>bd8e897b-3b7a-4a7b-a962-23fb3fa1da3b</UUID>
+  <Name>GremTour</Name>
+  <Agents>
+    <Agent>
+      <UUID>60ec4b5b-ed00-41e0-8178-79f567e8560b</UUID>
+      <FirstName>Tom</FirstName>
+      <LastName>Hanks</LastName>
+    </Agent>
+    <Agent>
+      <UUID>cfc9bcce-2405-4193-b7ea-8a0caa18a9c5</UUID>
+      <FirstName>Tom</FirstName>
+      <LastName>Cruise</LastName>
+    </Agent>
+  </Agents>
+</TravelAgency>

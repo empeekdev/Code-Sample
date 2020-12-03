@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TravelCompany.Core.Models;
 using TravelCompany.Model;
@@ -9,6 +11,8 @@ namespace TravelCompany.Core.Services
     {
         Task<Result<IEnumerable<TravelAgency>>> GetAllTravelAgencies();
         Result<TravelAgency> AddTravelAgency(TravelAgency travelAgency);
-        Result<Agent> AddAgent(long travelAgencyId,  Agent agent);
+        Result<Agent> AddAgent(long travelAgencyId,  Agent agent);        
+        Result<bool> BulkUploadZip(IFormFile file);
+        
     }
 }
