@@ -2,8 +2,8 @@
 
 namespace TravelCompany.WebApi.DTO
 {
-    public class Agent: AgentBase
-    {        
-        public Guid UUID { get; set; }        
-    }    
+    public class Agent : AgentBase
+    {
+        public Guid UUID { get; set; }
+    }
 }

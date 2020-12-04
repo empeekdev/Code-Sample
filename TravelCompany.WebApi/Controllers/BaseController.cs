@@ -6,7 +6,7 @@ using TravelCompany.DataAccess;
 
 namespace TravelCompany.WebApi.Controllers
 {
-    public class BaseController: ControllerBase
+    public class BaseController : ControllerBase
     {
         protected ILogger Logger { get; }
 
@@ -16,7 +16,7 @@ namespace TravelCompany.WebApi.Controllers
         }
 
         protected IActionResult ProcessResult<T>(Result<T> result, Func<T, IActionResult> OkAction = null)
-        {            
+        {
             switch (result?.Status)
             {
                 case ResultStatusEnum.Success:
@@ -27,7 +27,7 @@ namespace TravelCompany.WebApi.Controllers
                 case ResultStatusEnum.ValidationError:
                     return BadRequest(JsonConvert.SerializeObject(result.Errors));
 
-                case ResultStatusEnum.GeneralError:                    
+                case ResultStatusEnum.GeneralError:
                     return Problem(result.Message);
 
                 case ResultStatusEnum.NotFound:

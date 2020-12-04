@@ -17,7 +17,7 @@
         /// Error codes:  2000...2999    
         /// </summary>
         public static class Agency
-        {           
+        {
             public static ValidationError NameCantBeEmpty() => new ValidationError(2000, $"Name of the agency can't be empty.", "Name");
         }
 

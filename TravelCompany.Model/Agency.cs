@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace TravelCompany.DataAccess
-{    
+{
     [Table("Agency")]
     [Serializable]
     public class Agency
     {
         // The empty constructor is needed for the xml serialization/deserialization
         public Agency() { }
-        
+
         [Key]
         [Required]
         public Guid UUID { get; set; }

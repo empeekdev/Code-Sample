@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using TravelCompany.DataAccess;
 
 namespace TravelCompany.DBLayer.MSSQL
 {
@@ -8,7 +6,7 @@ namespace TravelCompany.DBLayer.MSSQL
     {
         public MSSQLDbContext(DbContextOptions option) : base(option)
         {
-                     
+
         }
     }
 }

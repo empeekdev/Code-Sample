@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -17,9 +16,9 @@ namespace TravelCompany.Core.Services.Implementations
         private readonly ILogger<AgencyService> _logger;
         private readonly IUnitOfWork _uow;
 
-        public AgencyService (ILogger<AgencyService> logger, IUnitOfWork uow)
+        public AgencyService(ILogger<AgencyService> logger, IUnitOfWork uow)
         {
-            _logger = logger;            
+            _logger = logger;
             _uow = uow;
         }
 
@@ -36,7 +35,7 @@ namespace TravelCompany.Core.Services.Implementations
                 return Result.GeneralError<IEnumerable<Agency>>(ex);
             }
         }
-        
+
         public Result<Agency> Add(Agency agency)
         {
             try
@@ -55,12 +54,12 @@ namespace TravelCompany.Core.Services.Implementations
                 _logger.LogError(ex, ex.Message);
                 return Result.GeneralError<Agency>(ex);
             }
-        }        
-       
+        }
+
         public Result<bool> BulkUploadZip(IFormFile file)
         {
             try
-            {                
+            {
                 var serializer = new XmlSerializer(typeof(Agency));
                 var agencies = new List<Agency>();
                 var agents = new List<Agent>();
@@ -75,7 +74,7 @@ namespace TravelCompany.Core.Services.Implementations
                         var validationErrors = agency.Validate();
                         if (validationErrors.Any())
                             return Result.ValidationError<bool>(validationErrors);
-                        
+
                         agencies.Add(agency);
                     }
                 }
@@ -106,7 +105,7 @@ namespace TravelCompany.Core.Services.Implementations
                 _logger.LogError(ex, ex.Message);
                 return Result.GeneralError<bool>(ex);
             }
-        }              
+        }
 
     }
 }

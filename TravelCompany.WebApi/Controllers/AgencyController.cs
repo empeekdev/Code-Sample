@@ -15,19 +15,19 @@ namespace TravelCompany.WebApi.Controllers
     [ApiController]
     [AllowAnonymous]
     public class AgencyController : BaseController
-    {        
+    {
         private readonly IAgencyService _agencyService;
         private readonly IAgentService _agentService;
 
-        public AgencyController(ILogger<AgencyController> logger, IAgencyService agencyService, IAgentService agentService) 
+        public AgencyController(ILogger<AgencyController> logger, IAgencyService agencyService, IAgentService agentService)
             : base(logger)
-        {            
+        {
             _agencyService = agencyService;
             _agentService = agentService;
         }
 
         /// <summary>
-        /// Returns a list of travel agencies
+        /// Returns a list of agencies
         /// </summary>
         /// <returns></returns>
         [HttpGet, ResponseCache(CacheProfileName = "default")]
@@ -37,13 +37,13 @@ namespace TravelCompany.WebApi.Controllers
         {
             var result = await _agencyService.GetAll();
 
-            return ProcessResult(result, 
+            return ProcessResult(result,
                 a => Ok(new BaseResponse<IEnumerable<Agency>>(a.Select(x => x.ToDTOModel())))
             );
         }
 
         /// <summary>
-        /// Add a new travel agency
+        /// Add a new agency
         /// </summary>
         /// <remarks>
         /// Can return next validation errors:        
@@ -59,13 +59,13 @@ namespace TravelCompany.WebApi.Controllers
         {
             var result = _agencyService.Add(model.ToDataModel());
 
-            return ProcessResult(result, 
+            return ProcessResult(result,
                 a => Ok(new BaseResponse<Agency>(a.ToDTOModel()))
             );
         }
 
         /// <summary>
-        /// Returns a list of agents by the travel agency UUID
+        /// Returns a list of agents by the agency UUID
         /// </summary>        
         /// <returns></returns>
         [HttpGet]
@@ -83,7 +83,7 @@ namespace TravelCompany.WebApi.Controllers
 
 
         /// <summary>
-        /// Add a new agent to a travel agency
+        /// Add a new agent
         /// </summary>
         /// <remarks>
         /// Can return next validation errors:        
@@ -116,12 +116,12 @@ namespace TravelCompany.WebApi.Controllers
         [ProducesResponseType(500)]
         [Route("upload/zip")]
         public IActionResult UploadAgencies(IFormFile file)
-        {            
+        {
             var result = _agencyService.BulkUploadZip(file);
 
             return ProcessResult(result,
                 a => Ok(new BaseResponse<bool>(a))
-            );            
+            );
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace TravelCompany.WebApi.DTO
+﻿namespace TravelCompany.WebApi.DTO
 {
     /// <summary>
     /// Base response. By default returns Message "OK" and Data object.

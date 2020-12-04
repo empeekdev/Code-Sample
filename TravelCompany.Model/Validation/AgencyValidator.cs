@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TravelCompany.DataAccess;
 
 namespace TravelCompany.DataAccess
 {

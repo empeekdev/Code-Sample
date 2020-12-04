@@ -9,7 +9,7 @@ using TravelCompany.Repository;
 
 namespace TravelCompany.Core.Services.Implementations
 {
-    public class AgentService: IAgentService
+    public class AgentService : IAgentService
     {
         private readonly ILogger<AgentService> _logger;
         private readonly IUnitOfWork _uow;
@@ -19,7 +19,7 @@ namespace TravelCompany.Core.Services.Implementations
             _logger = logger;
             _uow = uow;
         }
-        
+
         public async Task<Result<IEnumerable<Agent>>> Get(Guid agencyUUID)
         {
             try

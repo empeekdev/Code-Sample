@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TravelCompany.DataAccess;
+﻿using System.Collections.Generic;
 
 namespace TravelCompany.DataAccess
 {

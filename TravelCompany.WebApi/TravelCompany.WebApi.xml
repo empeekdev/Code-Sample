@@ -6,13 +6,13 @@
     <members>
         <member name="M:TravelCompany.WebApi.Controllers.AgencyController.GetList">
             <summary>
-            Returns a list of travel agencies
+            Returns a list of agencies
             </summary>
             <returns></returns>
         </member>
         <member name="M:TravelCompany.WebApi.Controllers.AgencyController.AddAgency(TravelCompany.WebApi.DTO.AgencyCreate)">
             <summary>
-            Add a new travel agency
+            Add a new agency
             </summary>
             <remarks>
             Can return next validation errors:        
@@ -23,13 +23,13 @@
         </member>
         <member name="M:TravelCompany.WebApi.Controllers.AgencyController.GetAgentsByAgencyUUID(System.Guid)">
             <summary>
-            Returns a list of agents by the travel agency UUID
+            Returns a list of agents by the agency UUID
             </summary>        
             <returns></returns>
         </member>
         <member name="M:TravelCompany.WebApi.Controllers.AgencyController.AddAgentByAgencyUUID(System.Guid,TravelCompany.WebApi.DTO.AgentCreate)">
             <summary>
-            Add a new agent to a travel agency
+            Add a new agent
             </summary>
             <remarks>
             Can return next validation errors:        

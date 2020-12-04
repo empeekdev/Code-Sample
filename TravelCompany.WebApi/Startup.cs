@@ -63,9 +63,9 @@ namespace TravelCompany.WebApi
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelCompany API", Version = "v1" });
                 options.IncludeXmlComments(XmlCommentsFilePath);
             });
-            
+
             RegisterDBContext(services);
-           
+
             RegisterServices(services);
 
             services.AddControllers();
@@ -78,14 +78,17 @@ namespace TravelCompany.WebApi
 
             switch (dbName)
             {
-                case "PostgreSQL": {
+                case "PostgreSQL":
+                    {
                         services.AddDbContext<DbContext, PostgreSQLDbContext>(options =>
                         {
                             options.UseNpgsql(dbConnections.GetValue<string>("PostgreSQL"));
                         });
-                    } break;
+                    }
+                    break;
 
-                case "MSSQL": {
+                case "MSSQL":
+                    {
                         services.AddDbContext<DbContext, MSSQLDbContext>(options =>
                         {
                             options.UseSqlServer(dbConnections.GetValue<string>("MSSQL"));
@@ -111,13 +114,13 @@ namespace TravelCompany.WebApi
         {
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IAgencyService, AgencyService>();
-            services.AddTransient<IAgentService, AgentService>();            
+            services.AddTransient<IAgentService, AgentService>();
         }
 
         private void InitializeDatabase(IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {                                
+            {
                 scope.ServiceProvider.GetRequiredService<DbContext>().Database.Migrate();
             }
         }
