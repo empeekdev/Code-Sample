@@ -19,47 +19,11 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("TravelCompany.Model.Agent", b =>
+            modelBuilder.Entity("TravelCompany.DataAccess.Agency", b =>
                 {
                     b.Property<Guid>("UUID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<Guid?>("AgencyUUID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("UUID");
-
-                    b.HasIndex("AgencyUUID");
-
-                    b.ToTable("Agent");
-                });
-
-            modelBuilder.Entity("TravelCompany.Model.Agency", b =>
-                {
-                    b.Property<Guid>("UUID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -71,16 +35,42 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
                     b.ToTable("Agency");
                 });
 
-            modelBuilder.Entity("TravelCompany.Model.Agent", b =>
+            modelBuilder.Entity("TravelCompany.DataAccess.Agent", b =>
                 {
-                    b.HasOne("TravelCompany.Model.Agency", "Agency")
+                    b.Property<Guid>("UUID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AgencyUUID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("UUID");
+
+                    b.HasIndex("AgencyUUID");
+
+                    b.ToTable("Agent");
+                });
+
+            modelBuilder.Entity("TravelCompany.DataAccess.Agent", b =>
+                {
+                    b.HasOne("TravelCompany.DataAccess.Agency", "Agency")
                         .WithMany("Agents")
                         .HasForeignKey("AgencyUUID");
 
                     b.Navigation("Agency");
                 });
 
-            modelBuilder.Entity("TravelCompany.Model.Agency", b =>
+            modelBuilder.Entity("TravelCompany.DataAccess.Agency", b =>
                 {
                     b.Navigation("Agents");
                 });

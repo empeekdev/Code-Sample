@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace TravelCompany.Core.Enums
+namespace TravelCompany.DataAccess
 {
     public enum ResultStatusEnum
     {

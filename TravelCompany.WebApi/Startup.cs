@@ -57,7 +57,7 @@ namespace TravelCompany.WebApi
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelCompany API", Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelCompany API", Version = "v1" });                
             });
             
             RegisterDBContext(services);

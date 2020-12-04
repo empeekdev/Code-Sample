@@ -2,11 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TravelCompany.Core.Enums;
-using TravelCompany.Core.Models;
+using TravelCompany.DataAccess;
 
 namespace TravelCompany.WebApi.Controllers
 {

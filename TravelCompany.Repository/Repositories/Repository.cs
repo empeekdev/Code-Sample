@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace TravelCompany.Repository.Repositories
 {
-	public sealed class Repository<T> : IRepository<T> where T : class
+    public sealed class Repository<T> : IRepository<T> where T : class
 	{
 		private readonly DbContext _db;
 		

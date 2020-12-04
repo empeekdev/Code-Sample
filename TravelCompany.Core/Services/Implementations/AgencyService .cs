@@ -7,8 +7,6 @@ using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using TravelCompany.Core.Models;
-using TravelCompany.Core.Validation;
 using TravelCompany.DataAccess;
 using TravelCompany.Repository;
 

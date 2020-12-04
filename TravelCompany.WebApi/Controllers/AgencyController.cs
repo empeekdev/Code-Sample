@@ -45,7 +45,11 @@ namespace TravelCompany.WebApi.Controllers
         /// <summary>
         /// Add a new travel agency
         /// </summary>
-        /// <param name="model"></param>
+        /// <remarks>
+        /// Can return next validation errors:        
+        ///     "Code": 1010, "Message": "Provided model is empty"    
+        ///     "Code": 2000, "Message": "Name of the agency can't be empty."                   
+        /// </remarks>        
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(BaseResponse<Agency>), 200)]
@@ -62,8 +66,7 @@ namespace TravelCompany.WebApi.Controllers
 
         /// <summary>
         /// Returns a list of agents by the travel agency UUID
-        /// </summary>
-        /// <param name="agencyUUID"></param>
+        /// </summary>        
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(BaseResponse<IEnumerable<Agent>>), 200)]
@@ -82,8 +85,13 @@ namespace TravelCompany.WebApi.Controllers
         /// <summary>
         /// Add a new agent to a travel agency
         /// </summary>
-        /// <param name="agencyUUID"></param>
-        /// <param name="model"></param>
+        /// <remarks>
+        /// Can return next validation errors:        
+        ///     "Code": 1010, "Message": "Provided model is empty"    
+        ///     "Code": 3010, "Message": "FirstName of the agency can't be empty"
+        ///     "Code": 3020, "Message": "LastName of the agency can't be empty"
+        ///     "Code": 3030, "Message": "The agency is not found"                
+        /// </remarks>
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(BaseResponse<Agent>), 200)]
@@ -101,8 +109,7 @@ namespace TravelCompany.WebApi.Controllers
         /// <summary>
         /// Bulk import agencies and their agents. Data should be accepted as a .zip archive, which contains several xml files. 
         /// Each file holds data about agents and some agency metadata.
-        /// </summary>
-        /// <param name="file"></param>
+        /// </summary>        
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(bool), 200)]

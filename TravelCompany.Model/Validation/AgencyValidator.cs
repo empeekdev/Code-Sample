@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TravelCompany.DataAccess;
 
-namespace TravelCompany.Core.Validation
+namespace TravelCompany.DataAccess
 {
     public static class AgencyValidator
     {

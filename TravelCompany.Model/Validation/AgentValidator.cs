@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TravelCompany.DataAccess;
 
-namespace TravelCompany.Core.Validation
+namespace TravelCompany.DataAccess
 {
     public static class AgentValidator
     {

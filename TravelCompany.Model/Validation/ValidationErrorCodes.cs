@@ -1,4 +1,4 @@
-﻿namespace TravelCompany.Core.Validation
+﻿namespace TravelCompany.DataAccess
 {
     public static class ValidationErrorCodes
     {
@@ -18,18 +18,18 @@
         /// </summary>
         public static class Agency
         {           
-            public static ValidationError NameCantBeEmpty() => new ValidationError(2000, $"Name of the travel agency can't be empty.", "Name");
+            public static ValidationError NameCantBeEmpty() => new ValidationError(2000, $"Name of the agency can't be empty.", "Name");
         }
 
         /// <summary>
         ///  Defines errors for Agency 
-        /// Error codes:  2000...2999    
+        /// Error codes:  3000...3999    
         /// </summary>
         public static class Agent
         {
-            public static ValidationError FirstNameCantBeEmpty() => new ValidationError(2000, $"FirstName of the agency can't be empty.", "FirstName");
-            public static ValidationError LastNameCantBeEmpty() => new ValidationError(2000, $"LastName of the agency can't be empty.", "LastName");
-            public static ValidationError AgencyIsNotFound() => new ValidationError(2000, $"The travel agency is not found");
+            public static ValidationError FirstNameCantBeEmpty() => new ValidationError(3010, $"FirstName of the agency can't be empty.", "FirstName");
+            public static ValidationError LastNameCantBeEmpty() => new ValidationError(3020, $"LastName of the agency can't be empty.", "LastName");
+            public static ValidationError AgencyIsNotFound() => new ValidationError(3030, $"The agency is not found");
         }
     }
 }

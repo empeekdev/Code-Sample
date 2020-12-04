@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using TravelCompany.Core.Enums;
-using TravelCompany.Core.Validation;
 
-namespace TravelCompany.Core.Models
+namespace TravelCompany.DataAccess
 {
     public class Result
     {

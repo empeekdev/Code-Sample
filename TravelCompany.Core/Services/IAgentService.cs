@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TravelCompany.Core.Models;
 using TravelCompany.DataAccess;
 
 namespace TravelCompany.Core.Services

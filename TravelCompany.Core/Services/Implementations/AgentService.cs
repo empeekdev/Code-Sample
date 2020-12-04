@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TravelCompany.Core.Models;
-using TravelCompany.Core.Validation;
 using TravelCompany.DataAccess;
 using TravelCompany.Repository;
 

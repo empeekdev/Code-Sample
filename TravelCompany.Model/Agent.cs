@@ -12,10 +12,6 @@ namespace TravelCompany.DataAccess
         // The empty constructor is needed for the xml serizalize/deserialize 
         public Agent() { }
 
-        [XmlIgnore]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]        
-        public long Id { get; set; }
-
         [Key]
         [Required]
         public Guid UUID { get; set; }
