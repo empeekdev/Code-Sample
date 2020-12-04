@@ -7,8 +7,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.OpenApi.Models;
 using System;
+using System.IO;
+using System.Reflection;
 using TravelCompany.Core.Services;
 using TravelCompany.Core.Services.Implementations;
 using TravelCompany.DBLayer.MSSQL;
@@ -57,7 +60,8 @@ namespace TravelCompany.WebApi
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelCompany API", Version = "v1" });                
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelCompany API", Version = "v1" });
+                options.IncludeXmlComments(XmlCommentsFilePath);
             });
             
             RegisterDBContext(services);
@@ -90,6 +94,16 @@ namespace TravelCompany.WebApi
                     break;
                 default:
                     throw new Exception("Incorrect database name in appsettings => UseDatabase section");
+            }
+        }
+
+        static string XmlCommentsFilePath
+        {
+            get
+            {
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
+                return Path.Combine(basePath, fileName);
             }
         }
 

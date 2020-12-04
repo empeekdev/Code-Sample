@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TravelCompany.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:TravelCompany.WebApi.Controllers.AgencyController.GetList">
+            <summary>
+            Returns a list of travel agencies
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TravelCompany.WebApi.Controllers.AgencyController.AddAgency(TravelCompany.WebApi.DTO.AgencyCreate)">
+            <summary>
+            Add a new travel agency
+            </summary>
+            <remarks>
+            Can return next validation errors:        
+                "Code": 1010, "Message": "Provided model is empty"    
+                "Code": 2000, "Message": "Name of the agency can't be empty."                   
+            </remarks>        
+            <returns></returns>
+        </member>
+        <member name="M:TravelCompany.WebApi.Controllers.AgencyController.GetAgentsByAgencyUUID(System.Guid)">
+            <summary>
+            Returns a list of agents by the travel agency UUID
+            </summary>        
+            <returns></returns>
+        </member>
+        <member name="M:TravelCompany.WebApi.Controllers.AgencyController.AddAgentByAgencyUUID(System.Guid,TravelCompany.WebApi.DTO.AgentCreate)">
+            <summary>
+            Add a new agent to a travel agency
+            </summary>
+            <remarks>
+            Can return next validation errors:        
+                "Code": 1010, "Message": "Provided model is empty"    
+                "Code": 3010, "Message": "FirstName of the agency can't be empty"
+                "Code": 3020, "Message": "LastName of the agency can't be empty"
+                "Code": 3030, "Message": "The agency is not found"                
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:TravelCompany.WebApi.Controllers.AgencyController.UploadAgencies(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Bulk import agencies and their agents. Data should be accepted as a .zip archive, which contains several xml files. 
+            Each file holds data about agents and some agency metadata.
+            </summary>        
+            <returns></returns>
+        </member>
+        <member name="T:TravelCompany.WebApi.DTO.BaseResponse`1">
+            <summary>
+            Base response. By default returns Message "OK" and Data object.
+            </summary>
+            <typeparam name="T">DTO model type</typeparam>
+        </member>
+        <member name="M:TravelCompany.WebApi.DTO.BaseResponse`1.#ctor(`0,System.String,System.Int32)">
+            <summary>
+            Base response. By default returns Message "OK" and Data object.
+            </summary>
+            <param name="data">Data to return</param>
+            <param name="message">Message of response</param>        
+        </member>
+        <member name="P:TravelCompany.WebApi.DTO.BaseResponse`1.Data">
+            <summary>
+            Data of base response to return.
+            </summary>
+        </member>
+        <member name="P:TravelCompany.WebApi.DTO.BaseResponse`1.Message">
+            <summary>
+            Message of base response
+            </summary>
+        </member>
+        <member name="P:TravelCompany.WebApi.DTO.BaseResponse`1.ErrorCode">
+            <summary>
+            Error code of response
+            </summary>
+        </member>
+    </members>
+</doc>
