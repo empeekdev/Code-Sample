@@ -8,34 +8,34 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Agent_TravelAgency_TravelAgencyId",
+                name: "FK_Agent_Agency_AgencyId",
                 table: "Agent");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_TravelAgency",
-                table: "TravelAgency");
+                name: "PK_Agency",
+                table: "Agency");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Agent",
                 table: "Agent");
 
             migrationBuilder.DropIndex(
-                name: "IX_Agent_TravelAgencyId",
+                name: "IX_Agent_AgencyId",
                 table: "Agent");
 
             migrationBuilder.DropColumn(
-                name: "TravelAgencyId",
+                name: "AgencyId",
                 table: "Agent");
 
             migrationBuilder.AddColumn<Guid>(
-                name: "TravelAgencyUUID",
+                name: "AgencyUUID",
                 table: "Agent",
                 type: "uniqueidentifier",
                 nullable: true);
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_TravelAgency",
-                table: "TravelAgency",
+                name: "PK_Agency",
+                table: "Agency",
                 column: "UUID");
 
             migrationBuilder.AddPrimaryKey(
@@ -44,15 +44,15 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
                 column: "UUID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Agent_TravelAgencyUUID",
+                name: "IX_Agent_AgencyUUID",
                 table: "Agent",
-                column: "TravelAgencyUUID");
+                column: "AgencyUUID");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Agent_TravelAgency_TravelAgencyUUID",
+                name: "FK_Agent_Agency_AgencyUUID",
                 table: "Agent",
-                column: "TravelAgencyUUID",
-                principalTable: "TravelAgency",
+                column: "AgencyUUID",
+                principalTable: "Agency",
                 principalColumn: "UUID",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -60,34 +60,34 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Agent_TravelAgency_TravelAgencyUUID",
+                name: "FK_Agent_Agency_AgencyUUID",
                 table: "Agent");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_TravelAgency",
-                table: "TravelAgency");
+                name: "PK_Agency",
+                table: "Agency");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Agent",
                 table: "Agent");
 
             migrationBuilder.DropIndex(
-                name: "IX_Agent_TravelAgencyUUID",
+                name: "IX_Agent_AgencyUUID",
                 table: "Agent");
 
             migrationBuilder.DropColumn(
-                name: "TravelAgencyUUID",
+                name: "AgencyUUID",
                 table: "Agent");
 
             migrationBuilder.AddColumn<long>(
-                name: "TravelAgencyId",
+                name: "AgencyId",
                 table: "Agent",
                 type: "bigint",
                 nullable: true);
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_TravelAgency",
-                table: "TravelAgency",
+                name: "PK_Agency",
+                table: "Agency",
                 column: "Id");
 
             migrationBuilder.AddPrimaryKey(
@@ -96,15 +96,15 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
                 column: "Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Agent_TravelAgencyId",
+                name: "IX_Agent_AgencyId",
                 table: "Agent",
-                column: "TravelAgencyId");
+                column: "AgencyId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Agent_TravelAgency_TravelAgencyId",
+                name: "FK_Agent_Agency_AgencyId",
                 table: "Agent",
-                column: "TravelAgencyId",
-                principalTable: "TravelAgency",
+                column: "AgencyId",
+                principalTable: "Agency",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }

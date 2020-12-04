@@ -9,12 +9,12 @@ namespace TravelCompany.DBLayer.PostgreSQL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropPrimaryKey(
-                name: "PK_TravelAgency",
-                table: "TravelAgency");
+                name: "PK_Agency",
+                table: "Agency");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
-                table: "TravelAgency",
+                table: "Agency",
                 type: "character varying(200)",
                 maxLength: 200,
                 nullable: false,
@@ -25,14 +25,14 @@ namespace TravelCompany.DBLayer.PostgreSQL.Migrations
 
             migrationBuilder.AddColumn<Guid>(
                 name: "UUID",
-                table: "TravelAgency",
+                table: "Agency",
                 type: "uuid",
                 nullable: false,
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_TravelAgency",
-                table: "TravelAgency",
+                name: "PK_Agency",
+                table: "Agency",
                 column: "UUID");
 
             migrationBuilder.CreateTable(
@@ -44,23 +44,23 @@ namespace TravelCompany.DBLayer.PostgreSQL.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    TravelAgencyUUID = table.Column<Guid>(type: "uuid", nullable: true)
+                    AgencyUUID = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Agent", x => x.UUID);
                     table.ForeignKey(
-                        name: "FK_Agent_TravelAgency_TravelAgencyUUID",
-                        column: x => x.TravelAgencyUUID,
-                        principalTable: "TravelAgency",
+                        name: "FK_Agent_Agency_AgencyUUID",
+                        column: x => x.AgencyUUID,
+                        principalTable: "Agency",
                         principalColumn: "UUID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Agent_TravelAgencyUUID",
+                name: "IX_Agent_AgencyUUID",
                 table: "Agent",
-                column: "TravelAgencyUUID");
+                column: "AgencyUUID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -69,16 +69,16 @@ namespace TravelCompany.DBLayer.PostgreSQL.Migrations
                 name: "Agent");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_TravelAgency",
-                table: "TravelAgency");
+                name: "PK_Agency",
+                table: "Agency");
 
             migrationBuilder.DropColumn(
                 name: "UUID",
-                table: "TravelAgency");
+                table: "Agency");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
-                table: "TravelAgency",
+                table: "Agency",
                 type: "text",
                 nullable: true,
                 oldClrType: typeof(string),
@@ -86,8 +86,8 @@ namespace TravelCompany.DBLayer.PostgreSQL.Migrations
                 oldMaxLength: 200);
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_TravelAgency",
-                table: "TravelAgency",
+                name: "PK_Agency",
+                table: "Agency",
                 column: "Id");
         }
     }

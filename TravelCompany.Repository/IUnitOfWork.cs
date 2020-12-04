@@ -1,14 +1,15 @@
-﻿using TravelCompany.Model;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using TravelCompany.DataAccess;
 using TravelCompany.Repository.Repositories;
 
 namespace TravelCompany.Repository
 {
     public interface IUnitOfWork
     {
-        IRepository<TravelAgency> TravelAgencyRepository { get; }
+        IRepository<Agency> AgencyRepository { get; }
         IRepository<Agent> AgentRepository { get; }
 
-        void BeginTransaction();
+        IDbContextTransaction BeginTransaction();
         void Commit();
         void Rollback();
         void SaveChanges();

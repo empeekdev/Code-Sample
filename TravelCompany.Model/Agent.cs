@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
-namespace TravelCompany.Model
+namespace TravelCompany.DataAccess
 {
     [Table("Agent")]
     [Serializable]
     public class Agent
     {
+        // The empty constructor is needed for the xml serizalize/deserialize 
         public Agent() { }
 
         [XmlIgnore]
@@ -22,11 +23,12 @@ namespace TravelCompany.Model
         [MaxLength(50)]
         [Required]
         public string FirstName { get; set; }
+
         [MaxLength(50)]
         [Required]
         public string LastName { get; set; }
 
         [XmlIgnore]
-        public TravelAgency TravelAgency { get; set; }
+        public Agency Agency { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
         {
             migrationBuilder.AddColumn<Guid>(
                 name: "UUID",
-                table: "TravelAgency",
+                table: "Agency",
                 type: "uniqueidentifier",
                 nullable: false,
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
@@ -19,7 +19,7 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "UUID",
-                table: "TravelAgency");
+                table: "Agency");
         }
     }
 }

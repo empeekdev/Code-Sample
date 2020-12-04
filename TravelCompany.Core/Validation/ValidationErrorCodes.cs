@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TravelCompany.Core.Validation
+﻿namespace TravelCompany.Core.Validation
 {
     public static class ValidationErrorCodes
     {
@@ -17,23 +13,23 @@ namespace TravelCompany.Core.Validation
         }
 
         /// <summary>
-        ///  Defines errors for TravelAgency 
+        ///  Defines errors for Agency 
         /// Error codes:  2000...2999    
         /// </summary>
-        public static class TravelAgency
+        public static class Agency
         {           
             public static ValidationError NameCantBeEmpty() => new ValidationError(2000, $"Name of the travel agency can't be empty.", "Name");
         }
 
         /// <summary>
-        ///  Defines errors for TravelAgency 
+        ///  Defines errors for Agency 
         /// Error codes:  2000...2999    
         /// </summary>
         public static class Agent
         {
             public static ValidationError FirstNameCantBeEmpty() => new ValidationError(2000, $"FirstName of the agency can't be empty.", "FirstName");
             public static ValidationError LastNameCantBeEmpty() => new ValidationError(2000, $"LastName of the agency can't be empty.", "LastName");
-            public static ValidationError TravelAgencyIsNotFound() => new ValidationError(2000, $"The travel agency is not found");
+            public static ValidationError AgencyIsNotFound() => new ValidationError(2000, $"The travel agency is not found");
         }
     }
 }

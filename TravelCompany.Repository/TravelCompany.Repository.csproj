@@ -5,12 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TravelCompany.Model\TravelCompany.Model.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Database\" />
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\TravelCompany.Model\TravelCompany.DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>

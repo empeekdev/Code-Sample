@@ -7,21 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelCompany.WebApi", "Tra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelCompany.Repository", "TravelCompany.Repository\TravelCompany.Repository.csproj", "{55D9AB28-6577-408A-BB84-6BB7B54C58CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelCompany.Core", "TravelCompany.Core\TravelCompany.Core.csproj", "{BF03C791-F059-459B-840D-1D0056A16C2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelCompany.Services", "TravelCompany.Core\TravelCompany.Services.csproj", "{BF03C791-F059-459B-840D-1D0056A16C2A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelCompany.Model", "TravelCompany.Model\TravelCompany.Model.csproj", "{586827EB-184F-4719-8A54-B172BBC3AF77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelCompany.DataAccess", "TravelCompany.Model\TravelCompany.DataAccess.csproj", "{586827EB-184F-4719-8A54-B172BBC3AF77}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9C31760D-1C5B-4D83-AC35-4E3152B6D446}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelCompany.DBLayer", "TravelCompany.DBLayer\TravelCompany.DBLayer.csproj", "{584806D1-3B4C-42E6-95AB-D9DB2CA7B285}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelCompany.Core.Test", "TravelCompany.Core.Test\TravelCompany.Core.Test.csproj", "{9BD1D401-E94E-4EE1-888C-B7B457B32B0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelCompany.DBLayer.MSSQL", "TravelCompany.DBLayer.MSSQL\TravelCompany.DBLayer.MSSQL.csproj", "{48DE4823-8249-426E-8DC6-CCD37931A2BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelCompany.WebApi.Test", "TravelCompany.WebApi.Test\TravelCompany.WebApi.Test.csproj", "{A1655252-D124-44ED-94A0-21CB8E4D4062}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelCompany.DBLayer", "TravelCompany.DBLayer\TravelCompany.DBLayer.csproj", "{584806D1-3B4C-42E6-95AB-D9DB2CA7B285}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelCompany.DBLayer.MSSQL", "TravelCompany.DBLayer.MSSQL\TravelCompany.DBLayer.MSSQL.csproj", "{48DE4823-8249-426E-8DC6-CCD37931A2BC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelCompany.DBLayer.PostgreSQL", "TravelCompany.DBLayer.PostgreSQL\TravelCompany.DBLayer.PostgreSQL.csproj", "{5D779140-0D2F-43A0-91BA-116989F0FFA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelCompany.DBLayer.PostgreSQL", "TravelCompany.DBLayer.PostgreSQL\TravelCompany.DBLayer.PostgreSQL.csproj", "{5D779140-0D2F-43A0-91BA-116989F0FFA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,14 +39,6 @@ Global
 		{586827EB-184F-4719-8A54-B172BBC3AF77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{586827EB-184F-4719-8A54-B172BBC3AF77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{586827EB-184F-4719-8A54-B172BBC3AF77}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9BD1D401-E94E-4EE1-888C-B7B457B32B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9BD1D401-E94E-4EE1-888C-B7B457B32B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9BD1D401-E94E-4EE1-888C-B7B457B32B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9BD1D401-E94E-4EE1-888C-B7B457B32B0C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1655252-D124-44ED-94A0-21CB8E4D4062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1655252-D124-44ED-94A0-21CB8E4D4062}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1655252-D124-44ED-94A0-21CB8E4D4062}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1655252-D124-44ED-94A0-21CB8E4D4062}.Release|Any CPU.Build.0 = Release|Any CPU
 		{584806D1-3B4C-42E6-95AB-D9DB2CA7B285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{584806D1-3B4C-42E6-95AB-D9DB2CA7B285}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{584806D1-3B4C-42E6-95AB-D9DB2CA7B285}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,10 +54,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{9BD1D401-E94E-4EE1-888C-B7B457B32B0C} = {9C31760D-1C5B-4D83-AC35-4E3152B6D446}
-		{A1655252-D124-44ED-94A0-21CB8E4D4062} = {9C31760D-1C5B-4D83-AC35-4E3152B6D446}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3F3C92DC-1642-4ED5-A95F-EB08CE1668F8}

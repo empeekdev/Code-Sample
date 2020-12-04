@@ -21,7 +21,7 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("TravelCompany.Model.TravelAgency", b =>
+            modelBuilder.Entity("TravelCompany.Model.Agency", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,7 +37,7 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TravelAgency");
+                    b.ToTable("Agency");
                 });
 #pragma warning restore 612, 618
         }

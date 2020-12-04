@@ -8,7 +8,7 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
-                table: "TravelAgency",
+                table: "Agency",
                 type: "nvarchar(200)",
                 maxLength: 200,
                 nullable: false,
@@ -23,7 +23,7 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
-                table: "TravelAgency",
+                table: "Agency",
                 type: "nvarchar(200)",
                 maxLength: 200,
                 nullable: true,

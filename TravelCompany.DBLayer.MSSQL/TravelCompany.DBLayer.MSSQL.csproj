@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TravelCompany.DBLayer\TravelCompany.DBLayer.csproj" />
-    <ProjectReference Include="..\TravelCompany.Model\TravelCompany.Model.csproj" />
+    <ProjectReference Include="..\TravelCompany.Model\TravelCompany.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

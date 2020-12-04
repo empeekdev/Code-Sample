@@ -42,17 +42,17 @@ namespace TravelCompany.DBLayer.PostgreSQL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<Guid?>("TravelAgencyUUID")
+                    b.Property<Guid?>("AgencyUUID")
                         .HasColumnType("uuid");
 
                     b.HasKey("UUID");
 
-                    b.HasIndex("TravelAgencyUUID");
+                    b.HasIndex("AgencyUUID");
 
                     b.ToTable("Agent");
                 });
 
-            modelBuilder.Entity("TravelCompany.Model.TravelAgency", b =>
+            modelBuilder.Entity("TravelCompany.Model.Agency", b =>
                 {
                     b.Property<Guid>("UUID")
                         .ValueGeneratedOnAdd()
@@ -70,19 +70,19 @@ namespace TravelCompany.DBLayer.PostgreSQL.Migrations
 
                     b.HasKey("UUID");
 
-                    b.ToTable("TravelAgency");
+                    b.ToTable("Agency");
                 });
 
             modelBuilder.Entity("TravelCompany.Model.Agent", b =>
                 {
-                    b.HasOne("TravelCompany.Model.TravelAgency", "TravelAgency")
+                    b.HasOne("TravelCompany.Model.Agency", "Agency")
                         .WithMany("Agents")
-                        .HasForeignKey("TravelAgencyUUID");
+                        .HasForeignKey("AgencyUUID");
 
-                    b.Navigation("TravelAgency");
+                    b.Navigation("Agency");
                 });
 
-            modelBuilder.Entity("TravelCompany.Model.TravelAgency", b =>
+            modelBuilder.Entity("TravelCompany.Model.Agency", b =>
                 {
                     b.Navigation("Agents");
                 });

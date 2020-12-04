@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,12 +7,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using System;
 using TravelCompany.Core.Services;
 using TravelCompany.Core.Services.Implementations;
 using TravelCompany.DBLayer.MSSQL;
 using TravelCompany.DBLayer.PostgreSQL;
-using Newtonsoft.Json.Serialization;
-using Microsoft.OpenApi.Models;
+using TravelCompany.Repository;
 
 namespace TravelCompany.WebApi
 {
@@ -28,6 +30,11 @@ namespace TravelCompany.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddLogging(x => x.AddConsole());
+
+            // Refer to this article if you require more information on CORS
+            // https://docs.microsoft.com/en-us/aspnet/core/security/cors
+            static void build(CorsPolicyBuilder b) { b.WithOrigins("*").WithMethods("*").WithHeaders("*").Build(); };
+            services.AddCors(options => { options.AddPolicy("AllowAllPolicy", build); });
 
             services.AddMvc(options =>
             {
@@ -50,22 +57,47 @@ namespace TravelCompany.WebApi
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelCompany API", Version = "v1" });                
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelCompany API", Version = "v1" });
             });
-
-            services.AddDbContext<DbContext, PostgreSQLDbContext>(options =>
-            {
-                options.UseNpgsql(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("PostgreSQL"));
-            });
-
-            //services.AddDbContext<DbContext, MSSQLDbContext>(options =>
-            //{
-            //    options.UseSqlServer(Configuration.GetSection("DatabaseConfiguration").GetValue<string>("MSSQL"));
-            //});
-
-            services.AddTransient<ITravelAgencyService, TravelAgencyService >();
+            
+            RegisterDBContext(services);
+           
+            RegisterServices(services);
 
             services.AddControllers();
+        }
+
+        private void RegisterDBContext(IServiceCollection services)
+        {
+            var dbName = Configuration.GetValue<string>("UseDatabase");
+            var dbConnections = Configuration.GetSection("DatabaseConfiguration");
+
+            switch (dbName)
+            {
+                case "PostgreSQL": {
+                        services.AddDbContext<DbContext, PostgreSQLDbContext>(options =>
+                        {
+                            options.UseNpgsql(dbConnections.GetValue<string>("PostgreSQL"));
+                        });
+                    } break;
+
+                case "MSSQL": {
+                        services.AddDbContext<DbContext, MSSQLDbContext>(options =>
+                        {
+                            options.UseSqlServer(dbConnections.GetValue<string>("MSSQL"));
+                        });
+                    }
+                    break;
+                default:
+                    throw new Exception("Incorrect database name in appsettings => UseDatabase section");
+            }
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IAgencyService, AgencyService>();
+            services.AddTransient<IAgentService, AgentService>();            
         }
 
         private void InitializeDatabase(IApplicationBuilder app)

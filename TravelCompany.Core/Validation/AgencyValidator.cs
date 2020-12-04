@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TravelCompany.Model;
+﻿using System.Collections.Generic;
+using TravelCompany.DataAccess;
 
 namespace TravelCompany.Core.Validation
 {
-    public static class TravelAgencyValidator
+    public static class AgencyValidator
     {
-        public static List<ValidationError> Validate(this TravelAgency model)
+        public static List<ValidationError> Validate(this Agency model)
         {
             var errors = new List<ValidationError>();
 
@@ -18,7 +16,7 @@ namespace TravelCompany.Core.Validation
             }
 
             if (string.IsNullOrWhiteSpace(model.Name))
-                errors.Add(ValidationErrorCodes.TravelAgency.NameCantBeEmpty());
+                errors.Add(ValidationErrorCodes.Agency.NameCantBeEmpty());
 
             return errors;
         }

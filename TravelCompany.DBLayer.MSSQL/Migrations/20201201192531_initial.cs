@@ -7,7 +7,7 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "TravelAgency",
+                name: "Agency",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -16,14 +16,14 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TravelAgency", x => x.Id);
+                    table.PrimaryKey("PK_Agency", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TravelAgency");
+                name: "Agency");
         }
     }
 }

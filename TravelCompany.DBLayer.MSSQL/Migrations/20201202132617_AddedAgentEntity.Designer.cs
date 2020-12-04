@@ -38,7 +38,7 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<long?>("TravelAgencyId")
+                    b.Property<long?>("AgencyId")
                         .HasColumnType("bigint");
 
                     b.Property<Guid>("UUID")
@@ -46,12 +46,12 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TravelAgencyId");
+                    b.HasIndex("AgencyId");
 
                     b.ToTable("Agent");
                 });
 
-            modelBuilder.Entity("TravelCompany.Model.TravelAgency", b =>
+            modelBuilder.Entity("TravelCompany.Model.Agency", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,19 +68,19 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TravelAgency");
+                    b.ToTable("Agency");
                 });
 
             modelBuilder.Entity("TravelCompany.Model.Agent", b =>
                 {
-                    b.HasOne("TravelCompany.Model.TravelAgency", "TravelAgency")
+                    b.HasOne("TravelCompany.Model.Agency", "Agency")
                         .WithMany("Agents")
-                        .HasForeignKey("TravelAgencyId");
+                        .HasForeignKey("AgencyId");
 
-                    b.Navigation("TravelAgency");
+                    b.Navigation("Agency");
                 });
 
-            modelBuilder.Entity("TravelCompany.Model.TravelAgency", b =>
+            modelBuilder.Entity("TravelCompany.Model.Agency", b =>
                 {
                     b.Navigation("Agents");
                 });

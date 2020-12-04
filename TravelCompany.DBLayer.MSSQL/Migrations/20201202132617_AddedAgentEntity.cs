@@ -16,23 +16,23 @@ namespace TravelCompany.DBLayer.MSSQL.Migrations
                     UUID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    TravelAgencyId = table.Column<long>(type: "bigint", nullable: true)
+                    AgencyId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Agent", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Agent_TravelAgency_TravelAgencyId",
-                        column: x => x.TravelAgencyId,
-                        principalTable: "TravelAgency",
+                        name: "FK_Agent_Agency_AgencyId",
+                        column: x => x.AgencyId,
+                        principalTable: "Agency",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Agent_TravelAgencyId",
+                name: "IX_Agent_AgencyId",
                 table: "Agent",
-                column: "TravelAgencyId");
+                column: "AgencyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

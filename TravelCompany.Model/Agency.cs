@@ -4,18 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
-namespace TravelCompany.Model
-{
-    [Table("TravelAgency")]
+namespace TravelCompany.DataAccess
+{    
+    [Table("Agency")]
     [Serializable]
-    public class TravelAgency
+    public class Agency
     {
-        public TravelAgency() { }
-
-        [XmlIgnore]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-
+        // The empty constructor is needed for the xml serialization/deserialization
+        public Agency() { }
+        
         [Key]
         [Required]
         public Guid UUID { get; set; }

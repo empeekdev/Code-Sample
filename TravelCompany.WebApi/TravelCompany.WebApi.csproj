@@ -14,13 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TravelCompany.Core\TravelCompany.Core.csproj" />
+    <ProjectReference Include="..\TravelCompany.Core\TravelCompany.Services.csproj" />
     <ProjectReference Include="..\TravelCompany.DBLayer.MSSQL\TravelCompany.DBLayer.MSSQL.csproj" />
     <ProjectReference Include="..\TravelCompany.DBLayer.PostgreSQL\TravelCompany.DBLayer.PostgreSQL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="MiddleWare\" />
   </ItemGroup>
 
 

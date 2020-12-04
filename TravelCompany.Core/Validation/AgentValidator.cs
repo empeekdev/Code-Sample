@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TravelCompany.Model;
+using TravelCompany.DataAccess;
 
 namespace TravelCompany.Core.Validation
 {
@@ -23,8 +23,8 @@ namespace TravelCompany.Core.Validation
             if (string.IsNullOrWhiteSpace(model.LastName))
                 errors.Add(ValidationErrorCodes.Agent.LastNameCantBeEmpty());
 
-            if (model.TravelAgency == null)
-                errors.Add(ValidationErrorCodes.Agent.TravelAgencyIsNotFound());
+            if (model.Agency == null)
+                errors.Add(ValidationErrorCodes.Agent.AgencyIsNotFound());
 
             return errors;
         }

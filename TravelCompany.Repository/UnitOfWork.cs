@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using TravelCompany.Model;
+using TravelCompany.DataAccess;
 using TravelCompany.Repository.Repositories;
 
 namespace TravelCompany.Repository
@@ -11,7 +10,7 @@ namespace TravelCompany.Repository
     {
         private DbContext _dbContext;
 
-        private IRepository<TravelAgency> _travelAgencyRepository;
+        private IRepository<Agency> _agencyRepository;
         private IRepository<Agent> _agentRepository;
 
         public UnitOfWork(DbContext dbContext)
@@ -20,11 +19,11 @@ namespace TravelCompany.Repository
             _dbContext.Database.OpenConnection();
         }
 
-        public IRepository<TravelAgency> TravelAgencyRepository
+        public IRepository<Agency> AgencyRepository
         {
             get
             {
-                return _travelAgencyRepository ?? (_travelAgencyRepository = GetRepositoryOfType<TravelAgency>());
+                return _agencyRepository ?? (_agencyRepository = GetRepositoryOfType<Agency>());
             }
         }
 
@@ -41,7 +40,7 @@ namespace TravelCompany.Repository
             return new Repository<T>(_dbContext);
         }
 
-        public void BeginTransaction() => _dbContext.Database.BeginTransaction();
+        public IDbContextTransaction BeginTransaction() => _dbContext.Database.BeginTransaction();
 
         public void Commit() => _dbContext.Database.CommitTransaction();
 

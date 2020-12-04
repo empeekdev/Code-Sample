@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using TravelCompany.Model;
+using TravelCompany.DataAccess;
 
 namespace TravelCompany.DBLayer.MSSQL
 {
